@@ -27,21 +27,23 @@ task main ()
 
   while(1 == 1)
   {
-  	//if (abs(vexRT[Ch1])>50)//threshold for sideways control
-  	//{
+  	if (abs(vexRT[Ch1])>50)//threshold for sideways control
+  	{
 
+				motor[leftMotor] = vexRT[Ch1];
+				motor[rightMotor1] = vexRT[Ch1];
+				motor[leftMotor1]=-vexRT[Ch1];
+				motor[rightMotor1] = -vexRT[Ch1];
 
+  	}
 
-
-  	//}
-
-  	//else if(){
+  	else if(){
 
    	 motor[leftMotor]  = vexRT[Ch3];   // Left Joystick Y value
      motor[rightMotor] = vexRT[Ch2];   // Right Joystick Y value
    	 motor[leftMotor1]  = vexRT[Ch3];   // Left Joystick Y value
    	 motor[rightMotor1] = vexRT[Ch2];   // Right Joystick Y value
-		//}
+		}
 
 	//moves 6 bar up and down or stays the same
 
