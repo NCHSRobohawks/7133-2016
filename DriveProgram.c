@@ -30,14 +30,14 @@ task main ()
   	if (abs(vexRT[Ch1])>50)//threshold for sideways control
   	{
 
-				motor[leftMotor] = vexRT[Ch1];
-				motor[rightMotor1] = vexRT[Ch1];
-				motor[leftMotor1]=-vexRT[Ch1];
+				motor[leftMotor] = -vexRT[Ch1];
 				motor[rightMotor1] = -vexRT[Ch1];
+				motor[leftMotor1]=vexRT[Ch1];
+				motor[rightMotor] = vexRT[Ch1];
 
   	}
 
-  	else {
+  	else{
 
    	 motor[leftMotor]  = vexRT[Ch3];   // Left Joystick Y value
      motor[rightMotor] = vexRT[Ch2];   // Right Joystick Y value
