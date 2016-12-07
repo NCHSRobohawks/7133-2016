@@ -1,3 +1,4 @@
+#pragma config(Sensor, dgtl1,  limitSwitch,    sensorTouch)
 #pragma config(Motor,  port2,           rightMotor,    tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port3,           leftMotor,     tmotorVex393_MC29, openLoop)
 #pragma config(Motor,  port4,           rightMotor1,   tmotorVex393_MC29, openLoop)
@@ -68,11 +69,11 @@ task autonomous()
   // Remove this function call once you have "real" code.
   //AutonomousCodePlaceholderForTesting();
 
-		motor[leftMotor]  = 127;   // Left Joystick Y value
-     motor[rightMotor] = 127;   // Right Joystick Y value
-   	 motor[leftMotor1]  = 127;   // Left Joystick Y value
-   	 motor[rightMotor1] = 127;   // Right Joystick Y value
-   	 
+	motor[leftMotor]  = -127;   // Left Joystick Y value
+     motor[rightMotor] = -127;   // Right Joystick Y value
+   	 motor[leftMotor1]  = -127;   // Left Joystick Y value
+   	 motor[rightMotor1] = -127;   // Right Joystick Y value
+
    	 delay(5000);
    	 	motor[leftMotor]  =0;   // Left Joystick Y value
      motor[rightMotor] = 0;   // Right Joystick Y value
@@ -93,6 +94,8 @@ task autonomous()
 task usercontrol()
 {
   // User control code here, inside the loop
+bool hold = false;
+bool reverse = false;
 
   while (true)
   {
@@ -116,14 +119,48 @@ task usercontrol()
   	//}
 
   	//else{
+  if (vexRT[Btn7U])
+   	 {
+   	   hold = true;
+   	 }
+   	 else if (vexRT[Btn7D])
+   	 {
+   	   hold = false;
+   	 }
 
+   	 if (vexRT[Btn7L])
+   	 {
+   	   reverse = true;
+   	 }
+   	 else if (vexRT[Btn7R])
+   	 {
+   	   reverse = false;
+   	 }
+
+
+
+if (!reverse)
+{
    	 motor[leftMotor]  = vexRT[Ch3];   // Left Joystick Y value
      motor[rightMotor] = vexRT[Ch2];   // Right Joystick Y value
    	 motor[leftMotor1]  = vexRT[Ch3];   // Left Joystick Y value
    	 motor[rightMotor1] = vexRT[Ch2];   // Right Joystick Y value
-		//}
+		}
+		else
+		{
+			 motor[leftMotor]  = -vexRT[Ch2];   // Left Joystick Y value
+     motor[rightMotor] = -vexRT[Ch3];   // Right Joystick Y value
+   	 motor[leftMotor1]  = -vexRT[Ch2];   // Left Joystick Y value
+   	 motor[rightMotor1] =-vexRT[Ch3];   // Right Joystick Y value
+
+
+	}
+
+
+
 
 	//moves 6 bar up and down or stays the same
+
 
   if (vexRT[Btn6U])
   {
@@ -135,7 +172,7 @@ task usercontrol()
 
 	}
 
-	else if (vexRT[Btn6D])
+	else if (vexRT[Btn6D]&&SensorValue(limitSwitch)==0)
   {
   	motor[leftLift]  = -127;
     motor[rightLift] = -127;
@@ -150,7 +187,16 @@ task usercontrol()
     motor[rightLift] = -127;
 
 	}*/
-	else //if (!vexRT[Btn8D])
+	else if (hold)
+  {
+  	motor[leftLift]  = 10;
+    motor[rightLift] = 10;
+
+    motor[leftLift1]  = 10;
+    motor[rightLift1] = 10;
+
+	}
+	else
   {
   	motor[leftLift]  = 0;
     motor[rightLift] = 0;
