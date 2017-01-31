@@ -23,43 +23,22 @@
 
 task open(){
   while(sensorValue(clawPot) < 750){
-    if(sensorValue(clawPot) > 500){
-      motor[claw] = 25;
-      motor[claw] = 25;
-    }
-    else if(sensorValue(clawPot) > 250){
-      motor[claw] = 50;
-      motor[claw] = 50;
-    }
-    else{
-      motor[claw] = 127;
-      motor[claw] = 127;
-    }
-
+    motor[claw] = 127;
+    motor[claw] = 127;
   }
 }
 
 task close(){
   while(sensorValue(clawPot) > 0){
-    if(sensorValue(clawPot) < 500){
-      motor[claw] = -50;
-      motor[claw] = -50;
+    motor[claw] = -127;
+    motor[claw] = -127;
     }
-    else if(sensorValue(clawPot) < 250){
-      motor[claw] = -25;
-      motor[claw] = -25;
-    }
-    else{
-      motor[claw] = -127;
-      motor[claw] = -127;
-    }
-  }
 }
 
 task main()
 {
 while(1==1){
-    clearLCDLine(0); 
+    clearLCDLine(0);
 		displayLCDNumber(0, 0, SensorValue(arm), 5);
   	displayLCDNumber(1, 0, SensorValue(clawPot), 5);
 		//holonomic drive code
@@ -91,12 +70,14 @@ while(1==1){
 		}
 
 		//Opens claw
-		if(VexRT[Btn5D]){
-			startTask(open());
+		if(VexRT[Btn5D] && sensorValue(clawPot) < 750){
+			motor[claw] = 127;
+    	motor[claw] = 127;
 		}
 		//Reverses claw
-		else if(VexRT[Btn6D]){
-			startTask(close());
+		else if(VexRT[Btn6D] && sensorValue(clawPot) > 150){
+			 motor[claw] = -127;
+    		motor[claw] = -127;
 		}
 		//Do nothing
 		else{
