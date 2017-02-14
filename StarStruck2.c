@@ -84,7 +84,7 @@ while(1==1){
 		}
 
 		//Opens claw
-		if(VexRT[Btn6D] && sensorValue(clawPot) <= 975){
+		if(VexRT[Btn6D] && sensorValue(clawPot) <= 2960){
 			motor[claw] = -127;
     	motor[claw2] = -127;
 		}
