@@ -57,7 +57,7 @@ task autonomous()
 
 	 nMotorEncoder[FL] = 0;
   //Drive back
-  while(nmotorEncoder[FL] < 627.2){
+  while(nMotorEncoder[FL] < 627.2){
     motor[FL] = 127;
     motor[FR] = -127;
     motor[BR] = -127;
@@ -65,12 +65,12 @@ task autonomous()
 }
   nMotorEncoder[FL] = 0;
   //Grab preloads
-  while(sensorValue(claw) > 125){
+  while(SensorValue(claw) > 125){
     motor[claw] = 127;
     motor[claw2] = 127;
   }
   //Drive back to wall
-  while(nmotorEncoder[FL] < 627.2){
+  while(nMotorEncoder[FL] < 627.2){
     motor[FL] = 127;
     motor[FR] = -127;
     motor[BR] = -127;
@@ -83,26 +83,26 @@ task autonomous()
 		motor[RightLift2] = 127;
 		motor[LeftLift1] = 127;
 		motor[LeftLift2] = 127;
-		if(sensorValue(arm) > 1900 && sensorValue(claw) < 750){
+		if(SensorValue(arm) > 1900 && SensorValue(claw) < 750){
 		motor[claw] = -127;
     motor[claw2] = -127;
 		}
   }
 
 	//Drive forward
-	while(NmotorEncoder[FL] < 627.2){
+	while(nMotorEncoder[FL] < 627.2){
     motor[FL] = -127;
     motor[FR] = 127;
     motor[BR] = 127;
     motor[BL] = -127;
 }
   nMotorEncoder[FL] = 0;
-while(sensorValue(claw) > 125){
+while(SensorValue(claw) > 125){
     motor[claw] = 127;
     motor[claw2] = 127;
   }
   //Drive back to wall
-  while(nmotorEncoder[FL] < 627.2){
+  while(nMotorEncoder[FL] < 627.2){
     motor[FL] = 127;
     motor[FR] = -127;
     motor[BR] = -127;
@@ -121,7 +121,7 @@ while(sensorValue(claw) > 125){
 		}
 
 	//Drive forwards
-	while(NmotorEncoder[FL] < 627.2){
+	while(nMotorEncoder[FL] < 627.2){
     motor[FL] = -127;
     motor[FR] = 127;
     motor[BR] = 127;
