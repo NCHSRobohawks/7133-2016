@@ -165,8 +165,8 @@ while(sensorValue(claw) > 125){
 
 task usercontrol()
 {
-	#define C1LX vexRT[Ch4]
-#define C1LY -vexRT[Ch3]
+#define C1LX vexRT[Ch4]
+#define C1LY vexRT[Ch3]
 #define C1RX vexRT[Ch1]
 
 while(1==1){
@@ -181,14 +181,14 @@ while(1==1){
 		motor[BL] = -C1LY + C1LX - C1RX;
 
 		//Lift
-		if(VexRT[Btn5U] && sensorValue(arm) < 2500){
+		if(VexRT[Btn6U] && sensorValue(arm) < 2500){
 			motor[RightLift1] = 127;
 			motor[RightLift2] = 127;
 			motor[LeftLift1] = 127;
 			motor[LeftLift2] = 127;
 		}
 		//Lift reverse
-		else if (VexRT[Btn5D]&& sensorValue(arm) > 0){
+		else if (VexRT[Btn6D]&& sensorValue(arm) > 0){
 			motor[RightLift1] = -127;
 			motor[RightLift2] = -127;
 			motor[LeftLift1] = -127;
@@ -203,12 +203,12 @@ while(1==1){
 		}
 
 		//Opens claw
-		if(VexRT[Btn6D] && sensorValue(clawPot) <= 2960){
+		if(VexRT[Btn5U] && sensorValue(clawPot) <= 2960){
 			motor[claw] = -127;
     	motor[claw2] = -127;
 		}
 		//closes claw
-		else if(VexRT[Btn6u] && sensorValue(clawPot) >= 50){
+		else if(VexRT[Btn5D] && sensorValue(clawPot) >= 50){
 			motor[claw] = 127;
     	motor[claw2] = 127;
 		}
