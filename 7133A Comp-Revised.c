@@ -112,17 +112,17 @@ while(1==1){
 
 		//Opens claw
 		if(VexRT[Btn5U] && sensorValue(clawPot) <= 2960){
-			motor[claw] = 127;
-    	motor[claw2] = -127;
-		}
-		//closes claw
-		else if(VexRT[Btn5D] && sensorValue(clawPot) >= 0){
 			motor[claw] = -127;
     	motor[claw2] = 127;
 		}
+		//closes claw
+		else if(VexRT[Btn5D] && sensorValue(clawPot) >= 0){
+			motor[claw] = 127;
+    	motor[claw2] = -127;
+		}
 		else if(VexRT[Btn8D]){
 			motor[claw] = -127;
-    	motor[claw2] = -127;
+    	motor[claw2] = 127;
 		}
 
 		//Do nothing

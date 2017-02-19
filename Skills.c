@@ -57,7 +57,7 @@ task autonomous()
 
 	 nMotorEncoder[FL] = 0;
   //Drive back
-  while(nMotorEncoder[FL] < 627.2){
+  while(nMotorEncoder[FL] < 200){
     motor[FL] = 127;
     motor[FR] = -127;
     motor[BR] = -127;
@@ -70,7 +70,7 @@ task autonomous()
     motor[claw2] = 127;
   }
   //Drive back to wall
-  while(nMotorEncoder[FL] < 627.2){
+  while(nMotorEncoder[FL] < 200){
     motor[FL] = 127;
     motor[FR] = -127;
     motor[BR] = -127;
@@ -204,12 +204,12 @@ while(1==1){
 
 		//Opens claw
 		if(VexRT[Btn5U] && sensorValue(clawPot) <= 2960){
-			motor[claw] = -127;
+			motor[claw] = 127;
     	motor[claw2] = -127;
 		}
 		//closes claw
-		else if(VexRT[Btn5D] && sensorValue(clawPot) >= 50){
-			motor[claw] = 127;
+		else if(VexRT[Btn5D] && sensorValue(clawPot) >= 0){
+			motor[claw] = -127;
     	motor[claw2] = 127;
 		}
 		else if(VexRT[Btn8D]){
