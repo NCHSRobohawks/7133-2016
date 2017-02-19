@@ -116,7 +116,7 @@ while(1==1){
     	motor[claw2] = -127;
 		}
 		//closes claw
-		else if(VexRT[Btn5D] && sensorValue(clawPot) >= 50){
+		else if(VexRT[Btn5D] && sensorValue(clawPot) >= 0){
 			motor[claw] = -127;
     	motor[claw2] = 127;
 		}
