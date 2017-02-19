@@ -15,14 +15,19 @@
 #pragma config(Motor,  port8,           LeftLift1,     tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port9,           LeftLift2,     tmotorVex393_MC29, openLoop, reversed)
 #pragma config(Motor,  port10,          claw2,         tmotorVex393_HBridge, openLoop)
+
+#pragma platform(VEX)
+
+//Competition Control and Duration Settings
 #pragma competitionControl(Competition)
+#pragma autonomousDuration(20)
 #pragma userControlDuration(120)
 
 #include "Vex_Competition_Includes.c"   //Main competition background code...do not modify!
 
-#define C1LX vexRT[Ch4]
-#define C1LY vexRT[Ch3]
-#define C1RX vexRT[Ch1]
+//#define C1LX vexRT[Ch4]
+//#define C1LY vexRT[Ch3]
+//#define C1RX vexRT[Ch1]
 /////////////////////////////////////////////////////////////////////////////////////////
 //
 //                          Pre-Autonomous Functions
@@ -160,7 +165,11 @@ while(sensorValue(claw) > 125){
 
 task usercontrol()
 {
-	while(1==1){
+	#define C1LX vexRT[Ch4]
+#define C1LY -vexRT[Ch3]
+#define C1RX vexRT[Ch1]
+
+while(1==1){
     clearLCDLine(0);
     clearLCDLine(1);
 		displayLCDNumber(0, 0, SensorValue(arm), 5);
@@ -194,24 +203,12 @@ task usercontrol()
 		}
 
 		//Opens claw
-		if(VexRT[Btn6D] && sensorValue(claw) <= 100){
-			motor[claw] = -50;
-    	motor[claw2] = -50;
-		}
-			else if(VexRT[Btn6D] && sensorValue(claw) <= 350){
-			motor[claw] = -80;
-    	motor[claw2] = -80;
-		}
-			else if(VexRT[Btn6D] && sensorValue(claw) <= 650){
-			motor[claw] = -100;
-    	motor[claw2] = -100;
-		}
-		else if(VexRT[Btn6D] && sensorValue(claw) <= 850){
+		if(VexRT[Btn6D] && sensorValue(clawPot) <= 2960){
 			motor[claw] = -127;
     	motor[claw2] = -127;
 		}
 		//closes claw
-		else if(VexRT[Btn6u] && sensorValue(claw) >= 50){
+		else if(VexRT[Btn6u] && sensorValue(clawPot) >= 50){
 			motor[claw] = 127;
     	motor[claw2] = 127;
 		}
@@ -219,16 +216,12 @@ task usercontrol()
 			motor[claw] = -127;
     	motor[claw2] = -127;
 		}
-		else if(VexRT[Btn8U]){
-			motor[claw] = 127;
-    	motor[claw2] = 127;
-		}
+
 		//Do nothing
 		else{
 			motor[claw] = 0;
 			motor[claw2] = 0;
 		}
-
 
 }
 }
