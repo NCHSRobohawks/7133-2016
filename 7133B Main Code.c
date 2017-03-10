@@ -73,40 +73,40 @@ task autonomous()
 						motor[FR] = -50;
 						motor[BR] = -50;
 						motor[BL] = 127;
-						delay(1000)
+						delay(1000);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
 						motor[BL] = 0;
-						delay(150)
+						delay(150);
 						motor[FL] = 127;
 						motor[FR] = -45;
 						motor[BR] = -45;
 						motor[BL] = 127;
-						delay(350)
+						delay(350);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
 						motor[BL] = 0;
-						delay(50)
+						delay(50);
 						motor[claw] = 127;
 						motor[claw2] = -127;
-						delay(1000)
+						delay(1000);
 						motor[FL] = 127;
 						motor[FR] = 127;
 						motor[BR] = 45;
 						motor[BL] = 45;
-						delay(1750)
+						delay(1750);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
 						motor[BL] = 0;
-						delay(5)
+						delay(5);
 						motor[FL] = -127;
 						motor[FR] = 127;
 						motor[BR] = 127;
 						motor[BL] = -127;
-						delay(400)
+						delay(400);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
@@ -116,10 +116,10 @@ task autonomous()
 										motor[RightLift2] = 127;
 										motor[LeftLift1] = 127;
 										motor[LeftLift2] = 127;
-										delay(750)
+										delay(750);
 										motor[claw] = -127;
 										motor[claw2] = 127;
-										delay(100)
+										delay(100);
 										motor[claw] = 0;
 										motor[claw2] = 0;
 
@@ -166,10 +166,10 @@ task autonomous()
 										motor[RightLift2] = 127;
 										motor[LeftLift1] = 127;
 										motor[LeftLift2] = 127;
-										delay(1000)
+										delay(1000);
 										motor[claw] = -127;
 										motor[claw2] = 127;
-										delay(100)
+										delay(100);
 										motor[claw] = 0;
 										motor[claw2] = 0;
 
@@ -191,25 +191,25 @@ task autonomous()
 						motor[FR] = -127;
 						motor[BR] = -127;
 						motor[BL] = 40;
-						delay(1300)
+						delay(1300);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
 						motor[BL] = 0;
-						delay(150)
+						delay(150);
 						motor[FL] = 40; //turn 1.5
 						motor[FR] = -127;
 						motor[BR] = -127;
 						motor[BL] = 40;
-						delay(450)
+						delay(450);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
 						motor[BL] = 0;
-						delay(50)
+						delay(50);
 						motor[claw] = 127;  //grab
 						motor[claw2] = -127;
-						delay(1200)
+						delay(1200);
 						motor[FL] = -45;  //turn 2
 						motor[FR] = -45;
 						motor[BR] = -127;
@@ -218,7 +218,7 @@ task autonomous()
 					  motor[RightLift2] = 35;
 					  motor[LeftLift1] = 35;
 					  motor[LeftLift2] = 35;
-						delay(900)
+						delay(900);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
@@ -227,12 +227,12 @@ task autonomous()
 					motor[RightLift2] = 0;
 					motor[LeftLift1] = 0;
 					motor[LeftLift2] = 0;
-						delay(5)
+						delay(5);
 						motor[FL] = -127; //line up
 						motor[FR] = 127;
 						motor[BR] = 127;
 						motor[BL] = -127;
-						delay(800)
+						delay(800);
 						motor[FL] = 0;
 						motor[FR] = 0;
 						motor[BR] = 0;
@@ -242,10 +242,10 @@ task autonomous()
 										motor[RightLift2] = 127;
 										motor[LeftLift1] = 127;
 										motor[LeftLift2] = 127;
-										delay(750)
+										delay(750);
 										motor[claw] = -127;
 										motor[claw2] = 127;
-										delay(100)
+										delay(100);
 										motor[claw] = 0;
 										motor[claw2] = 0;
 
@@ -292,10 +292,10 @@ task autonomous()
 										motor[RightLift2] = 127;
 										motor[LeftLift1] = 127;
 										motor[LeftLift2] = 127;
-										delay(1000)
+										delay(1000);
 										motor[claw] = -127;
 										motor[claw2] = 127;
-										delay(100)
+										delay(100);
 										motor[claw] = 0;
 										motor[claw2] = 0;
 
@@ -334,7 +334,7 @@ while(1==1){
     clearLCDLine(0);
     clearLCDLine(1);
 		displayLCDNumber(0, 0, SensorValue(arm), 5);
-		displayLCDNumber(0, 1, SensorValue(LShaft), 5);
+		displayLCDNumber(0, 1, SensorValue(lshaft), 5);
   	displayLCDNumber(1, 0, SensorValue(clawPot), 5);
 		//holonomic drive code
 		motor[FL] =  -C1LY - C1LX - C1RX;
@@ -343,27 +343,27 @@ while(1==1){
 		motor[BL] =  -C1LY + C1LX - C1RX;
 
 		//Lift
-		if(VexRT[Btn6U] && sensorValue(arm) < 1900){
+		if(vexRT[Btn6U] && SensorValue(arm) < 1900){
 			motor[RightLift1] = 127;
 			motor[RightLift2] = 127;
 			motor[LeftLift1] = 127;
 			motor[LeftLift2] = 127;
 		}
 		//Lift reverse
-		else if (VexRT[Btn6D]/*&& sensorValue(arm) > 0*/){
+		else if (vexRT[Btn6D]/*&& sensorValue(arm) > 0*/){
 			motor[RightLift1] = -127;
 			motor[RightLift2] = -127;
 			motor[LeftLift1] = -127;
 			motor[LeftLift2] = -127;
 		}
-		else if(VexRT[Btn7U]){
+		else if(vexRT[Btn7U]){
 			motor[RightLift1] = 127;
 			motor[RightLift2] = 127;
 			motor[LeftLift1] = 127;
 			motor[LeftLift2] = 127;
 		}
 		//Lift reverse
-		else if (VexRT[Btn7D]){
+		else if (vexRT[Btn7D]){
 			motor[RightLift1] = -127;
 			motor[RightLift2] = -127;
 			motor[LeftLift1] = -127;
@@ -378,12 +378,12 @@ while(1==1){
 		}
 
 		//Opens claw
-		if (VexRT[Btn5U] == true){
+		if (vexRT[Btn5U] == true){
 			motor[claw] = -127;
     	motor[claw2] = 127;
 		}
 		//closes claw
-		else if (VexRT[Btn5D] == true){
+		else if (vexRT[Btn5D] == true){
 			motor[claw] = 127;
     	motor[claw2] = -127;
 	}
